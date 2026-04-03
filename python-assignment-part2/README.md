@@ -1,9 +1,9 @@
 # Restaurant Menu & Order Management System - Part 2
 
-In this assignment, I am building a Restaurant Order Management System using Python data structures like dictionaries and lists.
+In this assignment, I am building a Restaurant Order Management System using Python data structures like dictionaries, lists, and nested dictionaries.
 
 ## Task 1 - Explore the Menu
-In this task, I printed the restaurant menu grouped by category such as Starters, Mains, and Desserts. I displayed item name, price, and availability status. 
+In this task, I printed the restaurant menu grouped by category such as Starters, Mains, and Desserts. I displayed item name, price, and availability status.
 
 I also calculated:
 - Total number of items on the menu
@@ -12,3 +12,18 @@ I also calculated:
 - Items priced under 150
 
 This task helped me understand how to use nested dictionaries and loops in Python.
+
+## Task 2 - Cart Operations
+In this task, I created a cart system using a list of dictionaries. Each cart item stores item name, quantity, and price.
+
+I implemented the following operations:
+- Add item to cart
+- Remove item from cart
+- Update item quantity
+- Prevent duplicate items in cart
+- Check item availability before adding
+- Handle invalid items that do not exist in the menu
+
+I also generated a final order summary which includes subtotal, GST (5%), and total payable amount.
+
+This task helped me understand how to use lists and dictionaries together in a real-world scenario like a restaurant ordering system.
