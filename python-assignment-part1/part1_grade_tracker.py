@@ -1,5 +1,4 @@
-# Task 1: Cleaning and parsing student data
-# Here we are given raw data, so first we will clean it and convert into proper format
+# -------- Task 1: Cleaning Student Data --------
 
 raw_students = [
     {"name": "  ayesha SHARMA  ", "roll": "101", "marks_str": "88, 72, 95, 60, 78"},
@@ -9,34 +8,33 @@ raw_students = [
     {"name": " Sneha pillai ",    "roll": "105", "marks_str": "75, 80, 70, 68, 85"},
 ]
 
-# Loop through each student to clean their data
+# Loop through each student and clean data
 for student in raw_students:
 
-    # Remove extra spaces from name and convert to proper title format
+    # cleaning name
     name = student["name"].strip().title()
 
-    # Convert roll number from string to integer
+    # converting roll number to int
     roll = int(student["roll"])
 
-    # Convert marks from string to list
-    marks_string = student["marks_str"].split(",")
+    # converting marks string to list
+    marks_string = student["marks_str"].split(", ")
     marks = []
     for m in marks_string:
-        marks.append(int(m.strip()))
+        marks.append(int(m))
 
-    # Check if name is valid (only alphabets in each word)
+    # checking if name is valid
     valid_name = True
     for word in name.split():
         if not word.isalpha():
             valid_name = False
 
-    # Print whether name is valid or not
     if valid_name:
         print(name, "- Valid name")
     else:
         print(name, "- Invalid name")
 
-    # Print student profile
+    # printing student details
     print("================================")
     print(f"Student : {name}")
     print(f"Roll No : {roll}")
@@ -44,7 +42,7 @@ for student in raw_students:
     print("================================")
 
 
-# Now print name in upper and lower case for roll number 103
+# printing name in upper and lower case for roll number 103
 for student in raw_students:
     if int(student["roll"]) == 103:
         name = student["name"].strip().title()
@@ -53,16 +51,17 @@ for student in raw_students:
         print(name.lower())
 
 
-# Task 2 - Marks Analysis Using Loops & Conditionals
+
+# -------- Task 2: Marks Analysis --------
 
 student_name = "Ayesha Sharma"
 subjects = ["Math", "Physics", "CS", "English", "Chemistry"]
 marks = [88, 72, 95, 60, 78]
 
-print("Student Name:", student_name)
+print("\nStudent Name:", student_name)
 print("-----------------------------")
 
-# printing subject, marks and grade
+# printing subject and grade
 for i in range(len(subjects)):
     if marks[i] >= 90:
         grade = "A+"
@@ -77,18 +76,15 @@ for i in range(len(subjects)):
 
     print(subjects[i], ":", marks[i], "Grade:", grade)
 
-# total and average
-total = 0
-for m in marks:
-    total = total + m
-
+# calculating total and average
+total = sum(marks)
 avg = total / len(marks)
 
 print("-----------------------------")
 print("Total Marks =", total)
 print("Average Marks =", round(avg, 2))
 
-# highest and lowest
+# finding highest and lowest
 high = marks[0]
 low = marks[0]
 high_sub = subjects[0]
@@ -125,23 +121,19 @@ while True:
             count = count + 1
         else:
             print("Marks should be between 0 and 100")
-
     else:
         print("Invalid input, please enter numbers only")
 
 print("-----------------------------")
 print("New subjects added:", count)
 
-new_total = 0
-for m in marks:
-    new_total = new_total + m
-
+new_total = sum(marks)
 new_avg = new_total / len(marks)
 print("Updated Average:", round(new_avg, 2))
 
 
 
-# Task 3 - Class Performance Summary
+# -------- Task 3: Class Summary --------
 
 class_data = [
     ("Ayesha Sharma",  [88, 72, 95, 60, 78]),
@@ -166,14 +158,10 @@ for student in class_data:
     name = student[0]
     marks = student[1]
 
-    total = 0
-    for m in marks:
-        total = total + m
+    total = sum(marks)
+    avg = round(total / len(marks), 2)
 
-    avg = total / len(marks)
-    avg = round(avg, 2)
-
-    total_avg_sum = total_avg_sum + avg
+    total_avg_sum += avg
 
     if avg >= 60:
         status = "Pass"
@@ -182,7 +170,7 @@ for student in class_data:
         status = "Fail"
         fail_count += 1
 
-    print(name, " " * (18 - len(name)), "|", avg, "|", status)
+    print(f"{name:<18} | {avg:<7} | {status}")
 
     if avg > topper_avg:
         topper_avg = avg
@@ -197,34 +185,35 @@ class_average = total_avg_sum / len(class_data)
 print("Class Average:", round(class_average, 2))
 
 
-# Task 4 - String Manipulation Utility
+
+# -------- Task 4: String Operations --------
 
 essay = "  python is a versatile language. it supports object oriented, functional, and procedural programming. python is widely used in data science and machine learning.  "
 
-# Step 1 - strip spaces
+# removing extra spaces
 clean_essay = essay.strip()
 print("\nClean Essay:")
 print(clean_essay)
 
-# Step 2 - Title Case
+# converting to title case
 print("\nTitle Case:")
 print(clean_essay.title())
 
-# Step 3 - Count 'python'
+# counting word python
 count_python = clean_essay.count("python")
 print("\nCount of word 'python':", count_python)
 
-# Step 4 - Replace 'python' with 'Python 🐍'
+# replacing python
 replaced_essay = clean_essay.replace("python", "Python 🐍")
 print("\nReplaced Essay:")
 print(replaced_essay)
 
-# Step 5 - Split into sentences
+# splitting into sentences
 sentences = clean_essay.split(". ")
 print("\nList of Sentences:")
 print(sentences)
 
-# Step 6 - Print numbered sentences
+# printing numbered sentences
 print("\nNumbered Sentences:")
 num = 1
 for s in sentences:
