@@ -173,3 +173,76 @@ print(f"Subtotal:                ₹{subtotal:.2f}")
 print(f"GST (5%):                ₹{gst:.2f}")
 print(f"Total Payable:           ₹{total:.2f}")
 print("====================================")
+
+
+
+# In this task, I used deep copy to create a backup of inventory.
+# Then I deducted stock based on items ordered in the cart.
+# I also printed reorder alerts for low stock items.
+
+# -------- Task 3: Inventory Tracker with Deep Copy --------
+
+import copy
+
+inventory = {
+    "Paneer Tikka":   {"stock": 10, "reorder_level": 3},
+    "Chicken Wings":  {"stock":  8, "reorder_level": 2},
+    "Veg Soup":       {"stock": 15, "reorder_level": 5},
+    "Butter Chicken": {"stock": 12, "reorder_level": 4},
+    "Dal Tadka":      {"stock": 20, "reorder_level": 5},
+    "Veg Biryani":    {"stock":  6, "reorder_level": 3},
+    "Garlic Naan":    {"stock": 30, "reorder_level": 10},
+    "Gulab Jamun":    {"stock":  5, "reorder_level": 2},
+    "Rasgulla":       {"stock":  4, "reorder_level": 3},
+    "Ice Cream":      {"stock":  7, "reorder_level": 4},
+}
+
+# making deep copy of inventory
+inventory_backup = copy.deepcopy(inventory)
+
+# change one value to show deep copy works
+inventory["Paneer Tikka"]["stock"] = 5
+
+print("\nChecking Deep Copy:")
+print("Inventory:", inventory["Paneer Tikka"]["stock"])
+print("Backup:", inventory_backup["Paneer Tikka"]["stock"])
+
+# restore original inventory
+inventory = copy.deepcopy(inventory_backup)
+
+
+# deduct stock based on cart
+print("\nUpdating Inventory after Order:")
+
+for item in cart:
+    item_name = item["item"]
+    qty = item["quantity"]
+
+    if item_name in inventory:
+        available_stock = inventory[item_name]["stock"]
+
+        if available_stock >= qty:
+            inventory[item_name]["stock"] -= qty
+        else:
+            print("Warning:", item_name, "has only", available_stock, "units left")
+            inventory[item_name]["stock"] = 0
+
+
+# reorder alert
+print("\nReorder Alerts:")
+for item in inventory:
+    stock = inventory[item]["stock"]
+    reorder_level = inventory[item]["reorder_level"]
+
+    if stock <= reorder_level:
+        print(f"⚠ Reorder Alert: {item} — Only {stock} unit(s) left (reorder level: {reorder_level})")
+
+
+# print inventory and backup to show difference
+print("\nFinal Inventory:")
+for item in inventory:
+    print(item, "-", inventory[item])
+
+print("\nBackup Inventory (Original):")
+for item in inventory_backup:
+    print(item, "-", inventory_backup[item])
