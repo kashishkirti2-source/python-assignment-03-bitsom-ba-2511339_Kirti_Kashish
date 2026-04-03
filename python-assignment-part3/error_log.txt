@@ -1,1 +1,10 @@
+Triggering Connection Error...
+Connection error occurred.
 
+Triggering HTTP 404 Error...
+Product not found.
+
+Reading error log file:
+
+[2026-04-04 12:30:21] ERROR in fetch_products: ConnectionError — No connection could be made
+[2026-04-04 12:30:23] ERROR in lookup_product: HTTPError — 404 Not Found for product ID 999
