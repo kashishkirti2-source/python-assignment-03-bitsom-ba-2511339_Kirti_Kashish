@@ -25,3 +25,12 @@ First, I created a function safe_divide(a, b) that performs division and handles
 Second, I created a function read_file_safe(filename) that reads a file safely. If the file does not exist, it shows an error message instead of crashing the program. I also used a finally block to print a message after every file operation attempt.
 
 I also added exception handling in my API calls to handle connection errors, timeout errors, and other unexpected errors so that the program does not crash if the API request fails.
+
+
+## Task 4 - Error Logging
+
+In this task, I created an error logging system that writes error messages to a file called error_log.txt with a timestamp. 
+
+I triggered a connection error by using an invalid URL and logged the error. I also triggered an HTTP 404 error by requesting a product ID that does not exist and logged that error as well.
+
+Finally, I read and printed the contents of the error_log.txt file to show the logged errors.
