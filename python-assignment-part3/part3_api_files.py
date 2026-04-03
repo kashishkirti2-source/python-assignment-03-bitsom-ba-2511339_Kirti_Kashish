@@ -1,9 +1,16 @@
-# -------- Task 1: File Read & Write --------
-
 # Product Explorer & Error-Resilient Logger
-# In this program, I am learning file handling, API calls, and exception handling.
-# In Task 1, I wrote notes to a file, appended new lines, and read the file.
-# I also searched for a keyword in the file.
+# In this program, I am learning file handling and exception handling.
+# I am writing notes to a file, reading them, and handling errors using try-except.
+# If any error occurs, it will be saved in error_log.txt.
+
+# function to log errors
+def log_error(error_message):
+    file = open("error_log.txt", "a")
+    file.write(error_message + "\n")
+    file.close()
+
+
+# -------- Task 1: File Read & Write --------
 
 # Part A — Write to file
 try:
@@ -19,7 +26,8 @@ try:
     print("File written successfully.")
 
 except Exception as e:
-    print("Error writing file:", e)
+    print("Error writing file.")
+    log_error("Write Error: " + str(e))
 
 
 # Append two more lines
@@ -33,7 +41,8 @@ try:
     print("Lines appended successfully.")
 
 except Exception as e:
-    print("Error appending file:", e)
+    print("Error appending file.")
+    log_error("Append Error: " + str(e))
 
 
 # Part B — Read file
@@ -65,4 +74,5 @@ try:
         print("No lines found with that keyword.")
 
 except Exception as e:
-    print("Error reading file:", e)
+    print("Error reading file.")
+    log_error("Read Error: " + str(e))
