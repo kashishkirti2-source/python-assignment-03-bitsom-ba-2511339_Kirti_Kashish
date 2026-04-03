@@ -1,1 +1,175 @@
+# Restaurant Menu & Order Management System
+# I am using dictionaries to store menu data like category, price, and availability.
+# Then I used loops to print the menu category wise.
+# After that, I calculated total items, available items, most expensive item,
+# and items that cost less than 150.
 
+# -------- Task 1: Explore the Menu --------
+
+menu = {
+    "Paneer Tikka":   {"category": "Starters",  "price": 180.0, "available": True},
+    "Chicken Wings":  {"category": "Starters",  "price": 220.0, "available": False},
+    "Veg Soup":       {"category": "Starters",  "price": 120.0, "available": True},
+    "Butter Chicken": {"category": "Mains",     "price": 320.0, "available": True},
+    "Dal Tadka":      {"category": "Mains",     "price": 180.0, "available": True},
+    "Veg Biryani":    {"category": "Mains",     "price": 250.0, "available": True},
+    "Garlic Naan":    {"category": "Mains",     "price":  40.0, "available": True},
+    "Gulab Jamun":    {"category": "Desserts",  "price":  90.0, "available": True},
+    "Rasgulla":       {"category": "Desserts",  "price":  80.0, "available": True},
+    "Ice Cream":      {"category": "Desserts",  "price": 110.0, "available": False},
+}
+
+# printing menu category wise
+categories = ["Starters", "Mains", "Desserts"]
+
+for cat in categories:
+    print("\n===== " + cat + " =====")
+    
+    for item in menu:
+        if menu[item]["category"] == cat:
+            price = menu[item]["price"]
+            available = menu[item]["available"]
+            
+            if available:
+                status = "Available"
+            else:
+                status = "Unavailable"
+            
+            print(f"{item:15} ₹{price:.2f}   [{status}]")
+
+# total number of items
+total_items = len(menu)
+print("\nTotal items on menu:", total_items)
+
+# total available items
+available_count = 0
+for item in menu:
+    if menu[item]["available"] == True:
+        available_count += 1
+
+print("Total available items:", available_count)
+
+# most expensive item
+max_price = 0
+expensive_item = ""
+
+for item in menu:
+    if menu[item]["price"] > max_price:
+        max_price = menu[item]["price"]
+        expensive_item = item
+
+print("Most expensive item:", expensive_item, "- ₹", max_price)
+
+# items under 150
+print("\nItems under ₹150:")
+for item in menu:
+    if menu[item]["price"] < 150:
+        print(item, "- ₹", menu[item]["price"])
+
+
+# In this task, I created a cart system using list of dictionaries.
+# I wrote functions to add items, remove items, and update quantity.
+# I also calculated the final bill including GST.
+
+# -------- Task 2: Cart Operations --------
+
+cart = []
+
+# function to add item to cart
+def add_to_cart(item_name, quantity):
+    if item_name not in menu:
+        print(item_name, "does not exist in menu")
+        return
+
+    if not menu[item_name]["available"]:
+        print(item_name, "is currently unavailable")
+        return
+
+    # check if item already in cart
+    for item in cart:
+        if item["item"] == item_name:
+            item["quantity"] += quantity
+            print(item_name, "quantity updated to", item["quantity"])
+            return
+
+    # if item not in cart, add new entry
+    cart.append({
+        "item": item_name,
+        "quantity": quantity,
+        "price": menu[item_name]["price"]
+    })
+    print(item_name, "added to cart")
+
+
+# function to remove item from cart
+def remove_from_cart(item_name):
+    for item in cart:
+        if item["item"] == item_name:
+            cart.remove(item)
+            print(item_name, "removed from cart")
+            return
+
+    print(item_name, "not found in cart")
+
+
+# function to update quantity
+def update_quantity(item_name, quantity):
+    for item in cart:
+        if item["item"] == item_name:
+            item["quantity"] = quantity
+            print(item_name, "quantity updated")
+            return
+
+    print(item_name, "not found in cart")
+
+
+# function to print cart
+def print_cart():
+    print("\nCurrent Cart:")
+    for item in cart:
+        print(item["item"], "- Qty:", item["quantity"])
+    if len(cart) == 0:
+        print("Cart is empty")
+
+
+# ---- Simulation Steps ----
+
+add_to_cart("Paneer Tikka", 2)
+print_cart()
+
+add_to_cart("Gulab Jamun", 1)
+print_cart()
+
+add_to_cart("Paneer Tikka", 1)
+print_cart()
+
+add_to_cart("Mystery Burger", 1)
+print_cart()
+
+add_to_cart("Chicken Wings", 1)
+print_cart()
+
+remove_from_cart("Gulab Jamun")
+print_cart()
+
+
+# -------- Order Summary --------
+
+print("\n========== Order Summary ==========")
+
+subtotal = 0
+
+for item in cart:
+    item_total = item["quantity"] * item["price"]
+    subtotal += item_total
+    print(f"{item['item']:15} x{item['quantity']}    ₹{item_total:.2f}")
+
+print("------------------------------------")
+
+gst = subtotal * 0.05
+total = subtotal + gst
+
+print(f"Subtotal:                ₹{subtotal:.2f}")
+print(f"GST (5%):                ₹{gst:.2f}")
+print(f"Total Payable:           ₹{total:.2f}")
+print("====================================")
