@@ -8,5 +8,60 @@
 
 menu = {
     "Paneer Tikka":   {"category": "Starters",  "price": 180.0, "available": True},
-    ...
+    "Chicken Wings":  {"category": "Starters",  "price": 220.0, "available": False},
+    "Veg Soup":       {"category": "Starters",  "price": 120.0, "available": True},
+    "Butter Chicken": {"category": "Mains",     "price": 320.0, "available": True},
+    "Dal Tadka":      {"category": "Mains",     "price": 180.0, "available": True},
+    "Veg Biryani":    {"category": "Mains",     "price": 250.0, "available": True},
+    "Garlic Naan":    {"category": "Mains",     "price":  40.0, "available": True},
+    "Gulab Jamun":    {"category": "Desserts",  "price":  90.0, "available": True},
+    "Rasgulla":       {"category": "Desserts",  "price":  80.0, "available": True},
+    "Ice Cream":      {"category": "Desserts",  "price": 110.0, "available": False},
 }
+
+# printing menu category wise
+categories = ["Starters", "Mains", "Desserts"]
+
+for cat in categories:
+    print("\n===== " + cat + " =====")
+    
+    for item in menu:
+        if menu[item]["category"] == cat:
+            price = menu[item]["price"]
+            available = menu[item]["available"]
+            
+            if available:
+                status = "Available"
+            else:
+                status = "Unavailable"
+            
+            print(f"{item:15} ₹{price:.2f}   [{status}]")
+
+# total number of items
+total_items = len(menu)
+print("\nTotal items on menu:", total_items)
+
+# total available items
+available_count = 0
+for item in menu:
+    if menu[item]["available"] == True:
+        available_count += 1
+
+print("Total available items:", available_count)
+
+# most expensive item
+max_price = 0
+expensive_item = ""
+
+for item in menu:
+    if menu[item]["price"] > max_price:
+        max_price = menu[item]["price"]
+        expensive_item = item
+
+print("Most expensive item:", expensive_item, "- ₹", max_price)
+
+# items under 150
+print("\nItems under ₹150:")
+for item in menu:
+    if menu[item]["price"] < 150:
+        print(item, "- ₹", menu[item]["price"])
