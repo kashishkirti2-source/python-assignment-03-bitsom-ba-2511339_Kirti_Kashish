@@ -3,6 +3,8 @@
 In this assignment, I worked on file handling, API data fetching, and exception handling in Python.
 
 ## Task 1 - File Read & Write
-In this task, I created a text file and wrote Python notes into it using write mode. Then I appended two more lines using append mode. After that, I read the file and printed each line with numbering. I also counted the total number of lines in the file. Finally, I implemented a keyword search feature to find specific lines in the file.
+In this task, I wrote Python notes to a file called python_notes.txt using write mode. Then I appended two more lines using append mode. After that, I read the file and printed each line with numbering. I also counted the total number of lines and implemented a keyword search feature.
 
-This task helped me understand file handling operations like write, append, and read, and also exception handling.
+I also implemented exception handling using try-except blocks. If any error occurs, it gets recorded in error_log.txt file instead of crashing the program.
+
+This task helped me understand file handling and error handling in Python.
