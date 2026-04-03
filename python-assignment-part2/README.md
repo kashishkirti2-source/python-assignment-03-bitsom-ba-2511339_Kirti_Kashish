@@ -27,3 +27,12 @@ I implemented the following operations:
 I also generated a final order summary which includes subtotal, GST (5%), and total payable amount.
 
 This task helped me understand how to use lists and dictionaries together in a real-world scenario like a restaurant ordering system.
+
+## Task 3 - Inventory Tracker with Deep Copy
+In this task, I created a backup of the inventory using deep copy so that the original data remains safe. I modified the inventory and showed that the backup was not affected.
+
+Then I updated the inventory stock based on the items ordered in the cart. If the stock was not enough, I printed a warning and did not allow stock to go below zero.
+
+I also printed reorder alerts for items whose stock was less than or equal to the reorder level.
+
+This task helped me understand deep copy and inventory management logic.
