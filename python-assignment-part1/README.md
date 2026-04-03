@@ -24,3 +24,11 @@ In this task, I calculated the average marks of each student and assigned pass o
 I printed a formatted class performance table.
 I also calculated how many students passed and failed.
 Then I found the class topper and overall class average.
+
+## Task 4 - String Manipulation Utility
+In this task, I performed different string operations on a paragraph.
+I removed extra spaces using strip().
+I converted the text into title case.
+I counted how many times the word "python" appears.
+I replaced the word "python" with "Python 🐍".
+I split the paragraph into sentences and printed each sentence with numbering.
