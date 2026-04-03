@@ -18,3 +18,9 @@ I also created a marks entry system using a while loop where user can add new su
 I handled invalid inputs so that the program does not crash.
 
 This assignment helped me understand loops, lists, strings, and conditionals in Python.
+
+## Task 3 - Class Performance Summary
+In this task, I calculated the average marks of each student and assigned pass or fail status.
+I printed a formatted class performance table.
+I also calculated how many students passed and failed.
+Then I found the class topper and overall class average.
