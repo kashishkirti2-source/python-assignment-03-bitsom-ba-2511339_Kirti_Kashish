@@ -51,3 +51,90 @@ for student in raw_students:
         print("\nName formats for Roll 103:")
         print(name.upper())
         print(name.lower())
+
+
+# Task 2 - Marks Analysis Using Loops & Conditionals
+
+student_name = "Ayesha Sharma"
+subjects = ["Math", "Physics", "CS", "English", "Chemistry"]
+marks = [88, 72, 95, 60, 78]
+
+print("Student Name:", student_name)
+print("-----------------------------")
+
+# printing subject, marks and grade
+for i in range(len(subjects)):
+    if marks[i] >= 90:
+        grade = "A+"
+    elif marks[i] >= 80:
+        grade = "A"
+    elif marks[i] >= 70:
+        grade = "B"
+    elif marks[i] >= 60:
+        grade = "C"
+    else:
+        grade = "F"
+
+    print(subjects[i], ":", marks[i], "Grade:", grade)
+
+# total and average
+total = 0
+for m in marks:
+    total = total + m
+
+avg = total / len(marks)
+
+print("-----------------------------")
+print("Total Marks =", total)
+print("Average Marks =", round(avg, 2))
+
+# highest and lowest
+high = marks[0]
+low = marks[0]
+high_sub = subjects[0]
+low_sub = subjects[0]
+
+for i in range(len(marks)):
+    if marks[i] > high:
+        high = marks[i]
+        high_sub = subjects[i]
+    if marks[i] < low:
+        low = marks[i]
+        low_sub = subjects[i]
+
+print("Highest Scoring Subject:", high_sub, "-", high)
+print("Lowest Scoring Subject:", low_sub, "-", low)
+
+# while loop for adding new subjects
+count = 0
+
+while True:
+    sub = input("Enter new subject name (or type done to stop): ")
+
+    if sub.lower() == "done":
+        break
+
+    mark_input = input("Enter marks for " + sub + ": ")
+
+    if mark_input.isdigit():
+        mark_input = int(mark_input)
+
+        if mark_input >= 0 and mark_input <= 100:
+            subjects.append(sub)
+            marks.append(mark_input)
+            count = count + 1
+        else:
+            print("Marks should be between 0 and 100")
+
+    else:
+        print("Invalid input, please enter numbers only")
+
+print("-----------------------------")
+print("New subjects added:", count)
+
+new_total = 0
+for m in marks:
+    new_total = new_total + m
+
+new_avg = new_total / len(marks)
+print("Updated Average:", round(new_avg, 2))
