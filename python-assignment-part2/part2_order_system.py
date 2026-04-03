@@ -1,10 +1,10 @@
+# -------- Task 1: Explore the Menu --------
+
 # Restaurant Menu & Order Management System
 # I am using dictionaries to store menu data like category, price, and availability.
 # Then I used loops to print the menu category wise.
 # After that, I calculated total items, available items, most expensive item,
 # and items that cost less than 150.
-
-# -------- Task 1: Explore the Menu --------
 
 menu = {
     "Paneer Tikka":   {"category": "Starters",  "price": 180.0, "available": True},
@@ -67,11 +67,11 @@ for item in menu:
         print(item, "- ₹", menu[item]["price"])
 
 
+# -------- Task 2: Cart Operations --------
+
 # In this task, I created a cart system using list of dictionaries.
 # I wrote functions to add items, remove items, and update quantity.
 # I also calculated the final bill including GST.
-
-# -------- Task 2: Cart Operations --------
 
 cart = []
 
@@ -175,12 +175,11 @@ print(f"Total Payable:           ₹{total:.2f}")
 print("====================================")
 
 
+# -------- Task 3: Inventory Tracker with Deep Copy --------
 
 # In this task, I used deep copy to create a backup of inventory.
 # Then I deducted stock based on items ordered in the cart.
 # I also printed reorder alerts for low stock items.
-
-# -------- Task 3: Inventory Tracker with Deep Copy --------
 
 import copy
 
@@ -246,3 +245,117 @@ for item in inventory:
 print("\nBackup Inventory (Original):")
 for item in inventory_backup:
     print(item, "-", inventory_backup[item])
+
+
+# -------- Task 4: Daily Sales Log Analysis --------
+
+# In this task, I analysed the sales log data.
+# I calculated total revenue per day and found the best selling day.
+# I also found the most ordered item.
+# Then I added a new day and updated the sales report.
+# Finally, I printed all orders using enumerate style numbering.
+
+
+sales_log = {
+    "2025-01-01": [
+        {"order_id": 1,  "items": ["Paneer Tikka", "Garlic Naan"],          "total": 220.0},
+        {"order_id": 2,  "items": ["Gulab Jamun", "Veg Soup"],              "total": 210.0},
+        {"order_id": 3,  "items": ["Butter Chicken", "Garlic Naan"],        "total": 360.0},
+    ],
+    "2025-01-02": [
+        {"order_id": 4,  "items": ["Dal Tadka", "Garlic Naan"],             "total": 220.0},
+        {"order_id": 5,  "items": ["Veg Biryani", "Gulab Jamun"],           "total": 340.0},
+    ],
+    "2025-01-03": [
+        {"order_id": 6,  "items": ["Paneer Tikka", "Rasgulla"],             "total": 260.0},
+        {"order_id": 7,  "items": ["Butter Chicken", "Veg Biryani"],        "total": 570.0},
+        {"order_id": 8,  "items": ["Garlic Naan", "Gulab Jamun"],           "total": 130.0},
+    ],
+    "2025-01-04": [
+        {"order_id": 9,  "items": ["Dal Tadka", "Garlic Naan", "Rasgulla"], "total": 300.0},
+        {"order_id": 10, "items": ["Paneer Tikka", "Gulab Jamun"],          "total": 270.0},
+    ],
+}
+
+# total revenue per day
+print("\nRevenue Per Day:")
+day_revenue = {}
+
+for date in sales_log:
+    total = 0
+    for order in sales_log[date]:
+        total += order["total"]
+    day_revenue[date] = total
+    print(date, "- ₹", total)
+
+# best selling day
+best_day = ""
+max_revenue = 0
+
+for date in day_revenue:
+    if day_revenue[date] > max_revenue:
+        max_revenue = day_revenue[date]
+        best_day = date
+
+print("\nBest Selling Day:", best_day, "- ₹", max_revenue)
+
+# most ordered item
+item_count = {}
+
+for date in sales_log:
+    for order in sales_log[date]:
+        for item in order["items"]:
+            if item in item_count:
+                item_count[item] += 1
+            else:
+                item_count[item] = 1
+
+most_ordered = ""
+max_count = 0
+
+for item in item_count:
+    if item_count[item] > max_count:
+        max_count = item_count[item]
+        most_ordered = item
+
+print("Most Ordered Item:", most_ordered, "-", max_count, "times")
+
+
+# add new day
+sales_log["2025-01-05"] = [
+    {"order_id": 11, "items": ["Butter Chicken", "Gulab Jamun", "Garlic Naan"], "total": 490.0},
+    {"order_id": 12, "items": ["Paneer Tikka", "Rasgulla"], "total": 260.0},
+]
+
+# reprint revenue per day
+print("\nUpdated Revenue Per Day:")
+day_revenue = {}
+
+for date in sales_log:
+    total = 0
+    for order in sales_log[date]:
+        total += order["total"]
+    day_revenue[date] = total
+    print(date, "- ₹", total)
+
+# new best selling day
+best_day = ""
+max_revenue = 0
+
+for date in day_revenue:
+    if day_revenue[date] > max_revenue:
+        max_revenue = day_revenue[date]
+        best_day = date
+
+print("\nNew Best Selling Day:", best_day, "- ₹", max_revenue)
+
+
+# numbered list of all orders
+print("\nAll Orders List:")
+order_number = 1
+
+for date in sales_log:
+    for order in sales_log[date]:
+        items = ", ".join(order["items"])
+        print(f"{order_number}. [{date}] Order #{order['order_id']} — ₹{order['total']} — Items: {items}")
+        order_number += 1
