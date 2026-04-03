@@ -1,13 +1,20 @@
-# Student Grade Tracker – Part 1
+# Student Grade Tracker - Part 1
 
-In this task, I cleaned raw student data and converted it into a proper format.
+In this assignment, I built a command-line Student Grade Tracker using basic Python concepts like loops, conditionals, strings, and lists.
 
-Steps performed:
-- Removed extra spaces from student names and converted them into title case.
-- Converted roll numbers from string to integer.
-- Converted marks from comma-separated string into a list of integers.
-- Checked whether each student name is valid (only alphabets).
-- Printed a formatted student profile using f-strings.
-- Printed the name of the student with roll number 103 in uppercase and lowercase.
+## Task 1 - Data Cleaning
+In this task, I cleaned raw student data by removing extra spaces and converting names into title case. 
+I converted roll numbers from string to integer and marks from comma-separated string into a list of integers.
+I also checked whether each student name is valid (only alphabets).
+Then I printed a formatted student profile using f-strings.
+I also printed the name of the student with roll number 103 in uppercase and lowercase.
 
-This task helped me understand data cleaning, loops, string operations, and list conversion in Python.
+## Task 2 - Marks Analysis
+In this task, I used loops and conditionals to analyse student marks.
+I printed each subject with marks and grade.
+I calculated total marks and average marks.
+I found the highest and lowest scoring subjects.
+I also created a marks entry system using a while loop where user can add new subjects and marks.
+I handled invalid inputs so that the program does not crash.
+
+This assignment helped me understand loops, lists, strings, and conditionals in Python.
