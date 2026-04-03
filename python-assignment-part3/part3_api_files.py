@@ -190,3 +190,56 @@ print(read_file_safe("python_notes.txt"))
 
 print("\nReading ghost_file.txt:")
 read_file_safe("ghost_file.txt")
+
+
+# -------- Task 4: Logging to File --------
+
+from datetime import datetime
+import requests
+
+# function to write error log with timestamp
+def write_log(function_name, error_type, message):
+    file = open("error_log.txt", "a")
+    time_now = datetime.now()
+    log_message = f"[{time_now}] ERROR in {function_name}: {error_type} — {message}\n"
+    file.write(log_message)
+    file.close()
+
+
+# 1. Trigger ConnectionError
+print("\nTriggering Connection Error...")
+
+try:
+    bad_url = "https://this-host-does-not-exist-xyz.com/api"
+    response = requests.get(bad_url, timeout=5)
+except requests.exceptions.ConnectionError:
+    print("Connection error occurred.")
+    write_log("fetch_products", "ConnectionError", "No connection could be made")
+except Exception as e:
+    write_log("fetch_products", "OtherError", str(e))
+
+
+# 2. Trigger HTTP 404 Error
+print("\nTriggering HTTP 404 Error...")
+
+try:
+    url = "https://dummyjson.com/products/999"
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        print("Product not found.")
+        write_log("lookup_product", "HTTPError", "404 Not Found for product ID 999")
+
+except Exception as e:
+    write_log("lookup_product", "OtherError", str(e))
+
+
+# 3. Read and print error_log.txt
+print("\nReading error log file:\n")
+
+try:
+    file = open("error_log.txt", "r")
+    print(file.read())
+    file.close()
+except FileNotFoundError:
+    print("Log file not found.")
