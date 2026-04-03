@@ -138,3 +138,60 @@ for m in marks:
 
 new_avg = new_total / len(marks)
 print("Updated Average:", round(new_avg, 2))
+
+
+
+# Task 3 - Class Performance Summary
+
+class_data = [
+    ("Ayesha Sharma",  [88, 72, 95, 60, 78]),
+    ("Rohit Verma",    [55, 68, 49, 72, 61]),
+    ("Priya Nair",     [91, 85, 88, 94, 79]),
+    ("Karan Mehta",    [40, 55, 38, 62, 50]),
+    ("Sneha Pillai",   [75, 80, 70, 68, 85]),
+]
+
+print("\nClass Performance Report")
+print("Name              | Average | Status")
+print("----------------------------------------")
+
+pass_count = 0
+fail_count = 0
+total_avg_sum = 0
+
+topper_name = ""
+topper_avg = 0
+
+for student in class_data:
+    name = student[0]
+    marks = student[1]
+
+    total = 0
+    for m in marks:
+        total = total + m
+
+    avg = total / len(marks)
+    avg = round(avg, 2)
+
+    total_avg_sum = total_avg_sum + avg
+
+    if avg >= 60:
+        status = "Pass"
+        pass_count += 1
+    else:
+        status = "Fail"
+        fail_count += 1
+
+    print(name, " " * (18 - len(name)), "|", avg, "|", status)
+
+    if avg > topper_avg:
+        topper_avg = avg
+        topper_name = name
+
+print("----------------------------------------")
+print("Students Passed:", pass_count)
+print("Students Failed:", fail_count)
+print("Class Topper:", topper_name, "-", topper_avg)
+
+class_average = total_avg_sum / len(class_data)
+print("Class Average:", round(class_average, 2))
